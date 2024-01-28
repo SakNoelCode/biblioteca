@@ -17,7 +17,7 @@ class Bibliografia extends Model
     //Relations
     public function tipo(): BelongsTo
     {
-        return $this->belongsTo(Tipos::class);
+        return $this->belongsTo(Tipo::class);
     }
 
     public function categoria(): BelongsTo

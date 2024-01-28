@@ -16,7 +16,7 @@ return new class extends Migration
             $table->char('codigo');
             $table->string('razon_social');
             $table->char('tipo');
-            $table->text('detalles');
+            $table->text('detalles')->nullable();
             $table->timestamps();
         });
     }

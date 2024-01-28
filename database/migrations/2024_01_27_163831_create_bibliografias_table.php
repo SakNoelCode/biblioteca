@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             $table->foreignId('tipo_id')->constrained('tipos')->onDelete('cascade');
             $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
+            $table->foreignId('subcategoria_id')->constrained('subcategorias')->cascadeOnDelete();
             $table->timestamps();
         });
     }
