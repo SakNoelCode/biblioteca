@@ -78,6 +78,7 @@ class PrestamoResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -98,6 +99,7 @@ class PrestamoResource extends Resource
         return [
             'index' => Pages\ListPrestamos::route('/'),
             'create' => Pages\CreatePrestamo::route('/create'),
+            'view' => Pages\ViewPrestamo::route('/{record}'),
             'edit' => Pages\EditPrestamo::route('/{record}/edit'),
         ];
     }
