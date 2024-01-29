@@ -18,8 +18,8 @@ return new class extends Migration
             $table->dateTime('fecha_hora_prestamo');
             $table->dateTime('fecha_hora_devolucion')->nullable();
             $table->date('fecha_max_devolucion');
-            $table->char('estado');
-            $table->text('observaciones');
+            $table->char('estado')->default('activo');
+            $table->text('observaciones')->nullable();
             $table->timestamps();
         });
     }

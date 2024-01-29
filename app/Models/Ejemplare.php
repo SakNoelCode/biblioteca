@@ -14,9 +14,19 @@ class Ejemplare extends Model
     protected $guarded = ['id'];
 
     //Relations
-    public function bibliografia(): BelongsTo
+    public function tipo(): BelongsTo
     {
-        return $this->belongsTo(Bibliografia::class);
+        return $this->belongsTo(Tipo::class);
+    }
+
+    public function categoria(): BelongsTo
+    {
+        return $this->belongsTo(Categoria::class);
+    }
+
+    public function subcategoria(): BelongsTo
+    {
+        return $this->belongsTo(Subcategoria::class);
     }
 
     public function prestamos()

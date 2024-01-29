@@ -4,9 +4,11 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoriaResource\Pages;
 use App\Filament\Resources\CategoriaResource\RelationManagers;
+use App\Filament\Resources\CategoriaResource\RelationManagers\SubcategoriasRelationManager;
 use App\Models\Categoria;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -55,7 +57,7 @@ class CategoriaResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            SubcategoriasRelationManager::class,
         ];
     }
 
