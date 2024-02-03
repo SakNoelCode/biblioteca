@@ -18,7 +18,7 @@ class SubcategoriaResource extends Resource
 {
     protected static ?string $model = Subcategoria::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-rectangle-group';
 
     public static function form(Form $form): Form
     {
@@ -28,6 +28,7 @@ class SubcategoriaResource extends Resource
                     ->label('Nombre')
                     ->placeholder('Nombre de la subcategoría')
                     ->required()
+                    ->unique('subcategorias','nombre')
                     ->maxLength(255),
                 Forms\Components\Select::make('categoria_id')
                     ->label('Categoría')

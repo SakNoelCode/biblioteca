@@ -17,7 +17,7 @@ class TipoResource extends Resource
 {
     protected static ?string $model = Tipo::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-clipboard-document-list';
 
     public static function form(Form $form): Form
     {
@@ -26,6 +26,7 @@ class TipoResource extends Resource
                  Forms\Components\TextInput::make('descripcion')
                  ->label('Nombre')
                  ->required()
+                 ->unique('tipos','descripcion')
                  ->maxLength(255)
             ]);
     }

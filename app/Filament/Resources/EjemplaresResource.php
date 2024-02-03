@@ -18,7 +18,11 @@ class EjemplaresResource extends Resource
 {
     protected static ?string $model = Ejemplare::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $modelLabel = 'Ejemplar';
+
+    protected static ?string $pluralModelLabel = 'Ejemplares';
+
+    protected static ?string $navigationIcon = 'heroicon-s-book-open';
 
     public static function form(Form $form): Form
     {
@@ -27,6 +31,7 @@ class EjemplaresResource extends Resource
                 Forms\Components\TextInput::make('nombre')
                     ->maxLength(255)
                     ->required()
+                    ->unique('ejemplares', 'nombre')
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('autor')
                     ->maxLength(255)
@@ -45,19 +50,50 @@ class EjemplaresResource extends Resource
                 Forms\Components\Select::make('tipo_id')
                     ->label('Tipo')
                     ->required()
-                    ->options(Tipo::all()->pluck('descripcion', 'id')),
+                    ->relationship('tipo', 'descripcion')
+                    ->searchable()
+                    ->preload()
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('descripcion')
+                            ->label('Nombre')
+                            ->required()
+                            ->unique('tipos', 'descripcion')
+                            ->maxLength(255)
+                    ]),
                 Forms\Components\Select::make('categoria_id')
                     ->label('Categoría')
                     ->required()
                     ->searchable()
                     ->preload()
-                    ->relationship('categoria', 'descripcion'),
+                    ->relationship('categoria', 'descripcion')
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('descripcion')
+                            ->label('Nombre')
+                            ->placeholder('Nombre de la categoría')
+                            ->required()
+                            ->unique('categorias', 'descripcion')
+                            ->maxLength(255),
+                    ]),
                 Forms\Components\Select::make('subcategoria_id')
                     ->label('SubCategoría')
                     ->required()
                     ->searchable()
                     ->preload()
-                    ->relationship('subcategoria', 'nombre'),
+                    ->relationship('subcategoria', 'nombre')
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('nombre')
+                            ->label('Nombre')
+                            ->placeholder('Nombre de la subcategoría')
+                            ->required()
+                            ->unique('subcategorias', 'nombre')
+                            ->maxLength(255),
+                        Forms\Components\Select::make('categoria_id')
+                            ->label('Categoría')
+                            ->required()
+                            ->relationship('categoria', 'descripcion')
+                            ->searchable()
+                            ->preload(),
+                    ]),
                 Forms\Components\Textarea::make('descripcion')
                     ->label('Descripción')
                     ->columnSpanFull(),
@@ -80,6 +116,7 @@ class EjemplaresResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -100,6 +137,7 @@ class EjemplaresResource extends Resource
         return [
             'index' => Pages\ListEjemplares::route('/'),
             'create' => Pages\CreateEjemplares::route('/create'),
+            'view' => Pages\ViewEjemplare::route('/{record}'),
             'edit' => Pages\EditEjemplares::route('/{record}/edit'),
         ];
     }

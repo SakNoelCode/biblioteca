@@ -5,10 +5,12 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PrestamoResource\Pages;
 use App\Filament\Resources\PrestamoResource\RelationManagers;
 use App\Models\Prestamo;
+use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\Column;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -17,7 +19,7 @@ class PrestamoResource extends Resource
 {
     protected static ?string $model = Prestamo::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-folder-plus';
 
     public static function form(Form $form): Form
     {
@@ -39,13 +41,13 @@ class PrestamoResource extends Resource
                 Forms\Components\DatePicker::make('fecha_max_devolucion')
                     ->label('Fecha de devolución máxima')
                     ->minDate(now())
-                    ->required(),
-                Forms\Components\DateTimePicker::make('fecha_hora_prestamo')
-                    ->label('Fecha y hora del prestamo')
                     ->required()
-                    ->readOnly()
-                    ->default(now())
-                    ->seconds(false),
+                    ->visibleOn('create'),
+                Forms\Components\DatePicker::make('fecha_devolucion')
+                    ->label('Fecha de devolución')
+                    ->required()
+                    ->minDate(now())
+                    ->visibleOn('edit'),
                 Forms\Components\Textarea::make('observaciones')
                     ->columnSpanFull(),
             ]);
@@ -59,19 +61,12 @@ class PrestamoResource extends Resource
                     ->label('Prestamista'),
                 Tables\Columns\TextColumn::make('ejemplare.nombre')
                     ->label('Libro prestado'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Fecha de préstamo')
+                    ->date(),
                 Tables\Columns\TextColumn::make('fecha_max_devolucion')
                     ->label('Se debe devolver el')
                     ->date(),
-                Tables\Columns\TextColumn::make('estado')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'activo' => 'gray',
-                        'reviewing' => 'warning',
-                        'published' => 'success',
-                        'rejected' => 'danger',
-                        default => 'info',
-                    })
-
             ])
             ->filters([
                 //
