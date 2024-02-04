@@ -17,8 +17,9 @@ return new class extends Migration
             $table->foreignId('ejemplare_id')->constrained('ejemplares')->onDelete('cascade');
             $table->date('fecha_devolucion')->nullable();
             $table->date('fecha_max_devolucion');
-            //$table->char('estado')->default('activo'); //Estado: Activo o Vencido
+            $table->char('estado')->default('prestado'); //Estado: Prestado, devuelto
             $table->text('observaciones')->nullable();
+            $table->integer('cantidad');
             $table->timestamps();
         });
     }

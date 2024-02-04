@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\TipoResource\Pages;
+namespace App\Filament\Resources\LibroResource\Pages;
 
-use App\Filament\Resources\TipoResource;
+use App\Filament\Resources\LibroResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListTipos extends ListRecords
+class ListLibros extends ListRecords
 {
-    protected static string $resource = TipoResource::class;
+    protected static string $resource = LibroResource::class;
 
     protected function getHeaderActions(): array
     {

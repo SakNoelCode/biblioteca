@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\EjemplaresResource\Pages;
-use App\Filament\Resources\EjemplaresResource\RelationManagers;
+use App\Filament\Resources\LibroResource\Pages;
+use App\Filament\Resources\LibroResource\RelationManagers;
 use App\Models\Ejemplare;
-use App\Models\Tipo;
+use App\Models\Libro;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,15 +14,21 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class EjemplaresResource extends Resource
+class LibroResource extends Resource
 {
     protected static ?string $model = Ejemplare::class;
 
-    protected static ?string $modelLabel = 'Ejemplar';
+    protected static ?string $modelLabel = 'Libro';
 
-    protected static ?string $pluralModelLabel = 'Ejemplares';
+    protected static ?string $pluralModelLabel = 'Libros';
 
     protected static ?string $navigationIcon = 'heroicon-s-book-open';
+
+    
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('tipo', 'libro');
+    }
 
     public static function form(Form $form): Form
     {
@@ -31,7 +37,6 @@ class EjemplaresResource extends Resource
                 Forms\Components\TextInput::make('nombre')
                     ->maxLength(255)
                     ->required()
-                    ->unique('ejemplares', 'nombre')
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('autor')
                     ->maxLength(255)
@@ -43,23 +48,11 @@ class EjemplaresResource extends Resource
                 Forms\Components\TextInput::make('edicion')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('cantidad')
+                /*               Forms\Components\TextInput::make('cantidad')
                     ->numeric()
                     ->required()
-                    ->prefix('N°'),
-                Forms\Components\Select::make('tipo_id')
-                    ->label('Tipo')
-                    ->required()
-                    ->relationship('tipo', 'descripcion')
-                    ->searchable()
-                    ->preload()
-                    ->createOptionForm([
-                        Forms\Components\TextInput::make('descripcion')
-                            ->label('Nombre')
-                            ->required()
-                            ->unique('tipos', 'descripcion')
-                            ->maxLength(255)
-                    ]),
+                    ->prefix('N°'),*/
+
                 Forms\Components\Select::make('categoria_id')
                     ->label('Categoría')
                     ->required()
@@ -108,15 +101,13 @@ class EjemplaresResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('autor')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('cantidad')
-                    ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -135,10 +126,10 @@ class EjemplaresResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListEjemplares::route('/'),
-            'create' => Pages\CreateEjemplares::route('/create'),
-            'view' => Pages\ViewEjemplare::route('/{record}'),
-            'edit' => Pages\EditEjemplares::route('/{record}/edit'),
+            'index' => Pages\ListLibros::route('/'),
+            'create' => Pages\CreateLibro::route('/create'),
+            'view' => Pages\ViewLibro::route('/{record}'),
+            'edit' => Pages\EditLibro::route('/{record}/edit'),
         ];
     }
 }

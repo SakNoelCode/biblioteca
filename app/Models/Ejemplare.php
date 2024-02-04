@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Ejemplare extends Model
 {
@@ -14,11 +15,6 @@ class Ejemplare extends Model
     protected $guarded = ['id'];
 
     //Relations
-    public function tipo(): BelongsTo
-    {
-        return $this->belongsTo(Tipo::class);
-    }
-
     public function categoria(): BelongsTo
     {
         return $this->belongsTo(Categoria::class);
@@ -32,5 +28,10 @@ class Ejemplare extends Model
     public function prestamos()
     {
         return $this->hasMany(Prestamo::class);
+    }
+
+    public function inventarios(): HasMany
+    {
+        return $this->hasMany(Inventario::class);
     }
 }

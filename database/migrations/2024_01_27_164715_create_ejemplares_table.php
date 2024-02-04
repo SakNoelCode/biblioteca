@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('ejemplares', function (Blueprint $table) {
             $table->id();
-            $table->char('estado')->default('disponible');
-            $table->char('ISBN')->nullable();
             $table->string('nombre');
-            $table->string('editorial');
-            $table->string('edicion');
             $table->string('autor');
-            $table->integer('cantidad')->default(0);
+            $table->string('editorial')->nullable();
+            $table->string('edicion')->nullable();
             $table->text('descripcion')->nullable();
-            $table->foreignId('tipo_id')->constrained('tipos')->onDelete('cascade');
-            $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
-            $table->foreignId('subcategoria_id')->constrained('subcategorias')->cascadeOnDelete();
+            $table->string('tipo');
+            $table->string('nombre_revista')->nullable();
+            $table->date('fecha_publicacion')->nullable();
+            $table->string('asesor')->nullable();
+            $table->foreignId('categoria_id')->nullable()->constrained('categorias')->onDelete('cascade');
+            $table->foreignId('subcategoria_id')->nullable()->constrained('subcategorias')->cascadeOnDelete();
             $table->timestamps();
         });
     }

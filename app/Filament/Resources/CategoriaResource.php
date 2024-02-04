@@ -11,7 +11,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-
 class CategoriaResource extends Resource
 {
     protected static ?string $model = Categoria::class;
@@ -23,11 +22,11 @@ class CategoriaResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('descripcion')
-                ->label('Nombre')
-                ->placeholder('Nombre de la categoría')
-                ->required()
-                ->unique('categorias','descripcion')
-                ->maxLength(255),
+                    ->label('Nombre')
+                    ->placeholder('Nombre de la categoría')
+                    ->required()
+                    ->unique('categorias', 'descripcion')
+                    ->maxLength(255),
             ]);
     }
 
@@ -36,8 +35,8 @@ class CategoriaResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('descripcion')
-                ->label('Nombre')
-                ->searchable(),
+                    ->label('Nombre')
+                    ->searchable(),
             ])
             ->filters([
                 //

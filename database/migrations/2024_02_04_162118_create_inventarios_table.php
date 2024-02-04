@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipos', function (Blueprint $table) {
+        Schema::create('inventarios', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion');
+            $table->foreignId('ejemplare_id')->constrained('ejemplares')->cascadeOnDelete();
+            $table->string('codigo');
+            $table->char('estado')->default('existente'); //Existente  No existente
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipos');
+        Schema::dropIfExists('inventarios');
     }
 };
