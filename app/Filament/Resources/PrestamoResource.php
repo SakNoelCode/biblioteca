@@ -4,6 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PrestamoResource\Pages;
 use App\Filament\Resources\PrestamoResource\RelationManagers;
+use App\Models\Ejemplare;
+use App\Models\Prestamista;
 use App\Models\Prestamo;
 use Carbon\Carbon;
 use Filament\Forms;
@@ -26,14 +28,23 @@ class PrestamoResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('prestamista_id')
-                    ->relationship('prestamista', 'razon_social')
+                    ->label('Prestamista (Nombre - Código)')
+                    ->relationship(
+                        name: 'prestamista',
+                        titleAttribute: 'razon_social'
+                    )
+                    ->getOptionLabelFromRecordUsing(fn (Prestamista $record) => "{$record->razon_social} - {$record->codigo}")
                     ->required()
                     ->columnSpanFull()
-                    ->searchable()
+                    ->searchable(['razon_social', 'codigo'])
                     ->preload(),
                 Forms\Components\Select::make('ejemplare_id')
                     ->label('Ejemplar')
-                    ->relationship('ejemplare', 'nombre')
+                    ->relationship(
+                        name: 'ejemplare',
+                        titleAttribute: 'nombre'
+                    )
+                    ->getOptionLabelFromRecordUsing(fn (Ejemplare $record) => "{$record->nombre}")
                     ->required()
                     ->columnSpanFull()
                     ->searchable()
@@ -48,6 +59,20 @@ class PrestamoResource extends Resource
                     ->required()
                     ->minDate(now())
                     ->visibleOn('edit'),
+                Forms\Components\TextInput::make('cantidad')
+                    ->numeric()
+                    ->required()
+                    ->prefix('N°'),
+                Forms\Components\Select::make('estado')
+                    ->required()
+                    ->hiddenOn('create')
+                    ->live()
+                    ->options([
+                        'prestado' => 'Prestado',
+                        'devuelto' => 'Devuelto'
+                    ])
+                    ->default('prestado')
+                    ->selectablePlaceholder(false),
                 Forms\Components\Textarea::make('observaciones')
                     ->columnSpanFull(),
             ]);
@@ -67,6 +92,9 @@ class PrestamoResource extends Resource
                 Tables\Columns\TextColumn::make('fecha_max_devolucion')
                     ->label('Se debe devolver el')
                     ->date(),
+                Tables\Columns\TextColumn::make('estado')
+                    ->badge()
+                    ->color('info'),
             ])
             ->filters([
                 //

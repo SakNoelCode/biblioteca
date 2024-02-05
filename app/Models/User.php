@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Filament\Panel;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements FilamentUser
@@ -50,5 +51,11 @@ class User extends Authenticatable implements FilamentUser
     {
         //return str_ends_with($this->email, '@yourdomain.com') && $this->hasVerifiedEmail();
         return true;
+    }
+
+    //Encriptar Password
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
     }
 }

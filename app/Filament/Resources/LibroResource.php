@@ -6,13 +6,17 @@ use App\Filament\Resources\LibroResource\Pages;
 use App\Filament\Resources\LibroResource\RelationManagers;
 use App\Models\Ejemplare;
 use App\Models\Libro;
+use App\Models\Subcategoria;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Collection;
 
 class LibroResource extends Resource
 {
@@ -24,7 +28,7 @@ class LibroResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-book-open';
 
-    
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()->where('tipo', 'libro');
@@ -48,17 +52,14 @@ class LibroResource extends Resource
                 Forms\Components\TextInput::make('edicion')
                     ->required()
                     ->maxLength(255),
-                /*               Forms\Components\TextInput::make('cantidad')
-                    ->numeric()
-                    ->required()
-                    ->prefix('N°'),*/
-
                 Forms\Components\Select::make('categoria_id')
                     ->label('Categoría')
                     ->required()
                     ->searchable()
                     ->preload()
                     ->relationship('categoria', 'descripcion')
+                    ->live()
+                    ->afterStateUpdated(fn (Set $set) => $set('subcategoria_id', null))
                     ->createOptionForm([
                         Forms\Components\TextInput::make('descripcion')
                             ->label('Nombre')
@@ -69,24 +70,13 @@ class LibroResource extends Resource
                     ]),
                 Forms\Components\Select::make('subcategoria_id')
                     ->label('SubCategoría')
+                    ->options(fn (Get $get): Collection => Subcategoria::query()
+                        ->where('categoria_id', $get('categoria_id'))
+                        ->pluck('nombre', 'id'))
                     ->required()
+                    ->live()
                     ->searchable()
-                    ->preload()
-                    ->relationship('subcategoria', 'nombre')
-                    ->createOptionForm([
-                        Forms\Components\TextInput::make('nombre')
-                            ->label('Nombre')
-                            ->placeholder('Nombre de la subcategoría')
-                            ->required()
-                            ->unique('subcategorias', 'nombre')
-                            ->maxLength(255),
-                        Forms\Components\Select::make('categoria_id')
-                            ->label('Categoría')
-                            ->required()
-                            ->relationship('categoria', 'descripcion')
-                            ->searchable()
-                            ->preload(),
-                    ]),
+                    ->preload(),
                 Forms\Components\Textarea::make('descripcion')
                     ->label('Descripción')
                     ->columnSpanFull(),

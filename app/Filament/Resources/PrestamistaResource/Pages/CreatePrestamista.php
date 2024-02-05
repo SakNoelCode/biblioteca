@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreatePrestamista extends CreateRecord
 {
     protected static string $resource = PrestamistaResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }
