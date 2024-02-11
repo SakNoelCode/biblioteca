@@ -14,8 +14,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\Column;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PrestamoResource extends Resource
 {
@@ -66,7 +64,6 @@ class PrestamoResource extends Resource
                 Forms\Components\Select::make('estado')
                     ->required()
                     ->hiddenOn('create')
-                    ->live()
                     ->options([
                         'prestado' => 'Prestado',
                         'devuelto' => 'Devuelto'

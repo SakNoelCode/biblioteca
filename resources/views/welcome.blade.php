@@ -11,7 +11,7 @@
 
     <!--====== Title ======-->
     <title>Sistema de Biblioteca</title>
-    
+
 
     <!--====== Favicon Icon ======-->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" type="image/png">
@@ -28,7 +28,7 @@
     <!--====== tailwind css ======-->
     <link rel="stylesheet" href="{{asset('assets/css/tailwind.css')}}">
 
-    
+
 
 </head>
 
@@ -57,25 +57,25 @@
                                 <ul class="items-center content-start mr-auto lg:justify-center md:justify-end navbar-nav md:flex">
                                     <!-- flex flex-row mx-auto my-0 navbar-nav -->
                                     <li class="nav-item active">
-                                        <a class="page-scroll" href="#home">HOME</a>
+                                        <a class="page-scroll" href="#home">Inicio</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#service">SERVICES</a>
+                                        <a class="page-scroll" href="#service">Servicios</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#pricing">PRICING</a>
+                                        <a class="page-scroll" href="#pricing">Libros</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#testimonial">Testimonial</a>
+                                        <a class="page-scroll" href="#testimonial">Tesis</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#contact">CONTACT</a>
+                                        <a class="page-scroll" href="#contact">Ubicación</a>
                                     </li>
                                 </ul>
                             </div>
 
                             <div class="items-center justify-end hidden navbar-social lg:flex">
-                                <span class="mr-4 font-bold text-gray-900 uppercase">FOLLOW US</span>
+                                <span class="mr-4 font-bold text-gray-900 uppercase">Síguenos en</span>
                                 <ul class="flex footer-social">
                                     <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
                                     <li><a href="#"><i class="lni-twitter-original"></i></a></li>
@@ -94,11 +94,11 @@
                 <div class="justify-center row">
                     <div class="w-full lg:w-5/6 xl:w-2/3">
                         <div class="pt-48 pb-64 text-center header-content">
-                            <h3 class="mb-5 text-3xl font-semibold leading-tight text-gray-900 md:text-5xl">Handcrafted Landing Page for Startups and SaaS Businesses</h3>
-                            <p class="px-5 mb-10 text-xl text-gray-700">A simple, customizable, and, beautiful SaaS business focused landing page to make your project closer to launch!</p>
+                            <h3 class="mb-5 text-3xl font-semibold leading-tight text-gray-900 md:text-5xl">Sistema de gestión de biblioteca de la FISME - BAGUA</h3>
+                            <p class="px-5 mb-10 text-xl text-gray-700">Buscas un libro?, una tesis?, consulta entre nuestros registros que tenemos para ti y solicita un préstamo</p>
                             <ul class="flex flex-wrap justify-center">
-                                <li><a class="mx-3 main-btn gradient-btn" href="javascript:void(0)">GET IN TOUCH</a></li>
-                                <li><a class="mx-3 main-btn video-popup" href="https://www.youtube.com/watch?v=r44RKWyfcFw">WATCH THE VIDEO <i class="ml-2 lni-play"></i></a></li>
+                                <li><a class="mx-3 main-btn gradient-btn" href="javascript:void(0)">Realizar búsqueda</a></li>
+                                <li><a class="mx-3 main-btn video-popup" href="https://www.youtube.com/watch?v=r44RKWyfcFw">Ver videotutorial <i class="ml-2 lni-play"></i></a></li>
                             </ul>
                         </div> <!-- header content -->
                     </div>
@@ -119,8 +119,8 @@
             <div class="flex">
                 <div class="w-full mx-4 lg:w-1/2">
                     <div class="pb-10 section-title">
-                        <h4 class="title">Crafted For</h4>
-                        <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
+                        <h4 class="title">Que ofrece la Biblioteca</h4>
+                        <p class="text">El sistema ha sido creado para facilitar el acceso de la biblioteca a los estudiantes</p>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
@@ -133,8 +133,8 @@
                                     <i class="lni-bolt"></i>
                                 </div>
                                 <div class="mb-8 ml-0 services-content media-body sm:ml-3">
-                                    <h4 class="services-title">Startup</h4>
-                                    <p class="text">Short description for the ones who look for something new.</p>
+                                    <h4 class="services-title">Búsqueda rápida</h4>
+                                    <p class="text">Escribe el libro que estas buscando y revisa si esta disponible.</p>
                                 </div>
                             </div> <!-- services content -->
                         </div>
@@ -144,8 +144,8 @@
                                     <i class="lni-bar-chart"></i>
                                 </div>
                                 <div class="mb-8 ml-0 services-content media-body sm:ml-3">
-                                    <h4 class="services-title">SaaS Business</h4>
-                                    <p class="text">Short description for the ones who look for something new.</p>
+                                    <h4 class="services-title">Libros y tesis</h4>
+                                    <p class="text">No solo tenemos libros, también tenemos tesis de acceso libre.</p>
                                 </div>
                             </div> <!-- services content -->
                         </div>
@@ -155,8 +155,8 @@
                                     <i class="lni-brush"></i>
                                 </div>
                                 <div class="mb-8 ml-0 services-content media-body sm:ml-3">
-                                    <h4 class="services-title">Agency</h4>
-                                    <p class="text">Short description for the ones who look for something new.</p>
+                                    <h4 class="services-title">Préstamos</h4>
+                                    <p class="text">La gestión de libros se basa en préstamos en un tiempo limitado, tienes que devolverlo.</p>
                                 </div>
                             </div> <!-- services content -->
                         </div>
@@ -166,8 +166,8 @@
                                     <i class="lni-bulb"></i>
                                 </div>
                                 <div class="mb-8 ml-0 services-content media-body sm:ml-3">
-                                    <h4 class="services-title">App Landing</h4>
-                                    <p class="text">Short description for the ones who look for something new.</p>
+                                    <h4 class="services-title">Solo personal FISME</h4>
+                                    <p class="text">Actualmente solo hacemos prestámos a estudiante, docentes o personal de la FISME.</p>
                                 </div>
                             </div> <!-- services content -->
                         </div>
@@ -191,8 +191,8 @@
             <div class="justify-center row">
                 <div class="w-full mx-4 lg:w-1/2">
                     <div class="pb-10 text-center section-title">
-                        <h4 class="title">Our Pricing</h4>
-                        <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
+                        <h4 class="title">Libros populares</h4>
+                        <p class="text">Echa un vistaso a los libros que más veces han sido prestados, es posible que también quieras leerlo!</p>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
@@ -200,20 +200,20 @@
                 <div class="w-full sm:w-3/4 md:w-3/4 lg:w-1/3">
                     <div class="single-pricing">
                         <div class="text-center pricing-header">
-                            <h5 class="sub-title">Basic</h5>
-                            <span class="price">$ 199</span>
-                            <p class="year">per year</p>
+                            <h5 class="sub-title">Prácticas de programación</h5>
+                            <span class="price">435</span>
+                            <p class="year">veces prestado</p>
                         </div>
                         <div class="mb-8 pricing-list">
                             <ul>
-                                <li><i class="lni-check-mark-circle"></i> Carefully crafted components</li>
-                                <li><i class="lni-check-mark-circle"></i> Amazing page examples</li>
-                                <li><i class="lni-check-mark-circle"></i> Super friendly support team</li>
-                                <li><i class="lni-check-mark-circle"></i> Awesome Support</li>
+                                <li><i class="lni-check-mark-circle"></i> Autor: Don Quijote</li>
+                                <li><i class="lni-check-mark-circle"></i> Edición: 2024-II</li>
+                                <li><i class="lni-check-mark-circle"></i> Núm pag: 457</li>
+                                <li><i class="lni-check-mark-circle"></i> Disponible</li>
                             </ul>
                         </div>
                         <div class="text-center pricing-btn">
-                            <a class="main-btn" href="javascript:void(0)">GET STARTED</a>
+                            <a class="main-btn" href="javascript:void(0)">Ver más</a>
                         </div>
                         <div class="bottom-shape">
                             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 112.35">
@@ -261,20 +261,20 @@
                             <img src="assets/images/baloon.svg" alt="baloon">
                         </div>
                         <div class="pricing-header">
-                            <h5 class="sub-title">Pro</h5>
-                            <span class="price">$ 399</span>
-                            <p class="year">per year</p>
+                            <h5 class="sub-title">Buenas prácticas de programación</h5>
+                            <span class="price">789</span>
+                            <p class="year">veces prestado</p>
                         </div>
                         <div class="mb-8 pricing-list">
                             <ul>
-                                <li><i class="lni-check-mark-circle"></i> Carefully crafted components</li>
-                                <li><i class="lni-check-mark-circle"></i> Amazing page examples</li>
-                                <li><i class="lni-check-mark-circle"></i> Super friendly support team</li>
-                                <li><i class="lni-check-mark-circle"></i> Awesome Support</li>
+                                <li><i class="lni-check-mark-circle"></i> Autor: Don Quijote</li>
+                                <li><i class="lni-check-mark-circle"></i> Edición: 2024-II</li>
+                                <li><i class="lni-check-mark-circle"></i> Núm pag: 457</li>
+                                <li><i class="lni-check-mark-circle"></i> Disponible</li>
                             </ul>
                         </div>
                         <div class="text-center pricing-btn">
-                            <a class="main-btn" href="javascript:void(0)">GET STARTED</a>
+                            <a class="main-btn" href="javascript:void(0)">ver más</a>
                         </div>
                         <div class="bottom-shape">
                             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 112.35">
@@ -322,20 +322,20 @@
                             <img src="assets/images/flower.svg" alt="flower">
                         </div>
                         <div class="text-right pricing-header">
-                            <h5 class="sub-title">Enterprise</h5>
-                            <span class="price">$ 799</span>
-                            <p class="year">per year</p>
+                            <h5 class="sub-title">Mi primer libro de programación</h5>
+                            <span class="price">1029</span>
+                            <p class="year">veces prestado</p>
                         </div>
                         <div class="mb-8 pricing-list">
                             <ul>
-                                <li><i class="lni-check-mark-circle"></i> Carefully crafted components</li>
-                                <li><i class="lni-check-mark-circle"></i> Amazing page examples</li>
-                                <li><i class="lni-check-mark-circle"></i> Super friendly support team</li>
-                                <li><i class="lni-check-mark-circle"></i> Awesome Support</li>
+                                <li><i class="lni-check-mark-circle"></i> Autor: Don Quijote</li>
+                                <li><i class="lni-check-mark-circle"></i> Edición: 2024-II</li>
+                                <li><i class="lni-check-mark-circle"></i> Núm pag: 457</li>
+                                <li><i class="lni-check-mark-circle"></i> Disponible</li>
                             </ul>
                         </div>
                         <div class="text-center pricing-btn">
-                            <a class="main-btn" href="javascript:void(0)">GET STARTED</a>
+                            <a class="main-btn" href="javascript:void(0)">ver más</a>
                         </div>
                         <div class="bottom-shape">
                             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 112.35">
@@ -393,12 +393,12 @@
             <div class="justify-end row">
                 <div class="w-full lg:w-1/2">
                     <div class="py-32 mx-auto text-center call-action-content">
-                        <h2 class="mb-5 text-5xl font-semibold leading-tight text-white">Curious to Learn More? Stay Tuned</h2>
-                        <p class="mb-6 text-white">You let us know whenever you want us to update anything or think something can be optimized.</p>
+                        <h2 class="mb-5 text-5xl font-semibold leading-tight text-white">Quieres recibir actualizaciones?</h2>
+                        <p class="mb-6 text-white">Te avisaremos cuando se registre un nuevo libro.</p>
                         <form action="#" class="relative w-5/6 mx-auto md:w-2/3 call-newsletter">
                             <i class="absolute top-0 left-0 pt-3 pl-5 text-xl text-blue-600 lni-envelope"></i>
                             <input type="email" placeholder="john@email.com" class="w-full py-3 pl-12 pr-40 bg-white rounded-full focus:outline-none">
-                            <button type="submit" class="absolute top-0 right-0 px-6 py-2 mt-1 mr-1 font-bold text-white duration-300 bg-blue-600 rounded-full hover:bg-blue-500">SUBSCRIBE</button>
+                            <button type="submit" class="absolute top-0 right-0 px-6 py-2 mt-1 mr-1 font-bold text-white duration-300 bg-blue-600 rounded-full hover:bg-blue-500">Suscribirse</button>
                         </form>
                     </div> <!-- slider-content -->
                 </div>
@@ -415,8 +415,8 @@
             <div class="justify-center row">
                 <div class="w-full mx-4 lg:w-1/2">
                     <div class="pb-10 text-center section-title">
-                        <h4 class="title">Testimonial</h4>
-                        <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
+                        <h4 class="title">Nuestras tesis</h4>
+                        <p class="text">Revisa las tesis más populares de nuestros estudiantes, seguro te ayudara a avanzar tu proyecto y puede servirte de inspiración!</p>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
@@ -518,8 +518,8 @@
             <div class="justify-center row">
                 <div class="w-full mx-4 lg:w-1/2">
                     <div class="pb-10 text-center section-title">
-                        <h4 class="title">Get In touch</h4>
-                        <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
+                        <h4 class="title">Ubícanos en</h4>
+                        <p class="text">Recuerda que los prestamos se realizan de manera presencial, visita nuestro campus universitario.</p>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->

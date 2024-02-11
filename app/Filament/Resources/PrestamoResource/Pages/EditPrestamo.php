@@ -5,6 +5,8 @@ namespace App\Filament\Resources\PrestamoResource\Pages;
 use App\Filament\Resources\PrestamoResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\CustomerResource\Pages;
+use Filament\Resources\Pages\Page;
 
 class EditPrestamo extends EditRecord
 {
@@ -13,7 +15,7 @@ class EditPrestamo extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            //Actions\DeleteAction::make(),
         ];
     }
 }
