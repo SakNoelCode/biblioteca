@@ -2,38 +2,34 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\LibroResource\Pages;
-use App\Filament\Resources\LibroResource\RelationManagers;
+use App\Filament\Resources\RevistaResource\Pages;
+use App\Filament\Resources\RevistaResource\RelationManagers;
 use App\Models\Ejemplare;
-use App\Models\Libro;
-use App\Models\Subcategoria;
+use App\Models\Revista;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Collection;
 
-class LibroResource extends Resource
+class RevistaResource extends Resource
 {
     protected static ?string $model = Ejemplare::class;
 
-    protected static ?string $modelLabel = 'Libro';
+    protected static ?string $modelLabel = 'Revista';
 
-    protected static ?string $pluralModelLabel = 'Libros';
+    protected static ?string $pluralModelLabel = 'Revistas';
 
-    protected static ?string $navigationIcon = 'heroicon-s-book-open';
+    protected static ?string $navigationIcon = 'heroicon-s-bookmark-square';
 
     protected static ?int $navigationSort = 3;
 
-
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->where('tipo', 'libro');
+        return parent::getEloquentQuery()->where('tipo', 'revista');
     }
 
     public static function form(Form $form): Form
@@ -41,33 +37,15 @@ class LibroResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('nombre')
+                    ->label('Nombre')
                     ->maxLength(255)
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('isbn')
-                    ->label('ISBN')
-                    ->nullable()
-                    ->maxLength(13),
-                Forms\Components\TextInput::make('editorial')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('edicion')
-                    ->nullable()
-                    ->maxLength(255),
-                Forms\Components\DatePicker::make('fecha_publicacion')
-                    ->label('Fecha de publicación')
+                Forms\Components\TextInput::make('pais_ciudad')
+                    ->label('País/Ciudad')
+                    ->maxLength(255)
+                    ->columnSpanFull()
                     ->required(),
-                Forms\Components\TextInput::make('autor')
-                    ->maxLength(255)
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('numero_paginas')
-                    ->label('N° de páginas')
-                    ->nullable()
-                    ->integer(),
-                Forms\Components\TextInput::make('cantidad')
-                    ->required()
-                    ->integer(),
                 Forms\Components\Select::make('categoria_id')
                     ->label('Categoría')
                     ->required()
@@ -84,15 +62,17 @@ class LibroResource extends Resource
                             ->unique('categorias', 'descripcion')
                             ->maxLength(255),
                     ]),
-                Forms\Components\Select::make('subcategoria_id')
-                    ->label('SubCategoría')
-                    ->options(fn (Get $get): Collection => Subcategoria::query()
-                        ->where('categoria_id', $get('categoria_id'))
-                        ->pluck('nombre', 'id'))
+                Forms\Components\DatePicker::make('fecha_publicacion')
+                    ->label('Fecha de publicación')
+                    ->required(),
+                Forms\Components\TextInput::make('numero_paginas')
+                    ->label('N° de páginas')
+                    ->nullable()
+                    ->integer(),
+                Forms\Components\TextInput::make('cantidad')
                     ->required()
-                    ->live()
-                    ->searchable()
-                    ->preload(),
+                    ->integer(),
+
                 Forms\Components\Textarea::make('descripcion')
                     ->label('Descripción')
                     ->columnSpanFull(),
@@ -105,7 +85,8 @@ class LibroResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('nombre')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('autor')
+                Tables\Columns\TextColumn::make('pais_ciudad')
+                    ->label('País/Ciudad')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('cantidad')
                     ->searchable(),
@@ -134,10 +115,10 @@ class LibroResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListLibros::route('/'),
-            'create' => Pages\CreateLibro::route('/create'),
-            'view' => Pages\ViewLibro::route('/{record}'),
-            'edit' => Pages\EditLibro::route('/{record}/edit'),
+            'index' => Pages\ListRevistas::route('/'),
+            'create' => Pages\CreateRevista::route('/create'),
+            'view' => Pages\ViewRevista::route('/{record}'),
+            'edit' => Pages\EditRevista::route('/{record}/edit'),
         ];
     }
 }

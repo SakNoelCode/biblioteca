@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\TesisResource\Pages;
+namespace App\Filament\Resources\RevistaResource\Pages;
 
-use App\Filament\Resources\TesisResource;
+use App\Filament\Resources\RevistaResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditTesis extends EditRecord
+class EditRevista extends EditRecord
 {
-    protected static string $resource = TesisResource::class;
+    protected static string $resource = RevistaResource::class;
 
     protected function getHeaderActions(): array
     {

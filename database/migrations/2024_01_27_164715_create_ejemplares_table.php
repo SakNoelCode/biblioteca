@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('edicion')->nullable();
             $table->date('fecha_publicacion')->nullable();  //Fecha que se sustento si es una Tesis
             $table->string('autor')->nullable();
+            $table->string('asesor')->nullable();
             $table->unsignedInteger('numero_paginas')->nullable();
             $table->unsignedInteger('cantidad');
             $table->text('descripcion')->nullable();

@@ -9,6 +9,7 @@ use App\Models\Tesis;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\FormsComponent;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -26,7 +27,7 @@ class TesisResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-s-clipboard-document';
 
     protected static ?int $navigationSort = 2;
-    
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()->where('tipo', 'tesis');
@@ -37,6 +38,7 @@ class TesisResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('nombre')
+                    ->label('Título')
                     ->maxLength(255)
                     ->required()
                     ->columnSpanFull(),
@@ -44,17 +46,37 @@ class TesisResource extends Resource
                     ->maxLength(255)
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('nombre_revista')
-                    ->maxLength(255)
-                    ->label('Nombre de la revista')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\DatePicker::make('fecha_publicacion')
-                    ->label('Fecha de publicación')
-                    ->required(),
                 Forms\Components\TextInput::make('asesor')
                     ->maxLength(255)
+                    ->columnSpanFull()
                     ->required(),
+                Forms\Components\Select::make('categoria_id')
+                    ->label('Categoría')
+                    ->required()
+                    ->searchable()
+                    ->preload()
+                    ->relationship('categoria', 'descripcion')
+                    ->live()
+                    ->afterStateUpdated(fn (Set $set) => $set('subcategoria_id', null))
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('descripcion')
+                            ->label('Nombre')
+                            ->placeholder('Nombre de la categoría')
+                            ->required()
+                            ->unique('categorias', 'descripcion')
+                            ->maxLength(255),
+                    ]),
+                Forms\Components\DatePicker::make('fecha_publicacion')
+                    ->label('Fecha de sustentación')
+                    ->required(),
+                Forms\Components\TextInput::make('numero_paginas')
+                    ->label('N° de páginas')
+                    ->nullable()
+                    ->integer(),
+                Forms\Components\TextInput::make('cantidad')
+                    ->required()
+                    ->integer(),
+
                 Forms\Components\Textarea::make('descripcion')
                     ->label('Descripción')
                     ->columnSpanFull(),
@@ -68,6 +90,8 @@ class TesisResource extends Resource
                 Tables\Columns\TextColumn::make('nombre')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('autor')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('cantidad')
                     ->searchable(),
             ])
             ->filters([
