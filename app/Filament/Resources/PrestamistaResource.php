@@ -8,6 +8,7 @@ use App\Models\Prestamista;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -18,6 +19,8 @@ class PrestamistaResource extends Resource
     protected static ?string $model = Prestamista::class;
 
     protected static ?string $navigationIcon = 'heroicon-s-user-group';
+
+    protected static ?int $navigationSort = 7;
 
     public static function form(Form $form): Form
     {
@@ -30,7 +33,7 @@ class PrestamistaResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('codigo')
                     ->label('Código')
-                    ->unique('prestamistas', 'codigo')
+                    ->unique('prestamistas', 'codigo', ignoreRecord: true)
                     ->required()
                     ->maxLength('255'),
                 Forms\Components\Select::make('tipo')
@@ -40,7 +43,9 @@ class PrestamistaResource extends Resource
                         'estudiante' => 'Estudiante',
                         'otro' => 'Otro'
                     ])
-                    ->native(false),
+                    ->default('docente')
+                    ->disableOptionWhen(fn (string $value): bool => $value === 'published')
+                    ->in(fn (Select $component): array => array_keys($component->getEnabledOptions())),
                 Forms\Components\Textarea::make('detalles')
                     ->placeholder('Ingrese información extra sobre el prestamista')
                     ->columnSpanFull()
