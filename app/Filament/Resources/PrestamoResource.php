@@ -21,7 +21,7 @@ class PrestamoResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-folder-plus';
 
-    protected static ?int $navigationSort = 8;
+    protected static ?int $navigationSort = 7;
 
     public static function form(Form $form): Form
     {

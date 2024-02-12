@@ -25,13 +25,9 @@ class Ejemplare extends Model
         return $this->belongsTo(Subcategoria::class);
     }
 
-    public function prestamos()
+    public function prestamos(): HasMany
     {
         return $this->hasMany(Prestamo::class);
     }
 
-    public function inventarios(): HasMany
-    {
-        return $this->hasMany(Inventario::class);
-    }
 }
