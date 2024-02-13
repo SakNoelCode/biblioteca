@@ -9,6 +9,8 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Get;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -42,10 +44,7 @@ class PrestamistaResource extends Resource
                         'docente' => 'Docente',
                         'estudiante' => 'Estudiante',
                         'otro' => 'Otro'
-                    ])
-                    ->default('docente')
-                    ->disableOptionWhen(fn (string $value): bool => $value === 'published')
-                    ->in(fn (Select $component): array => array_keys($component->getEnabledOptions())),
+                    ]),
                 Forms\Components\Textarea::make('detalles')
                     ->placeholder('Ingrese información extra sobre el prestamista')
                     ->columnSpanFull()
@@ -62,7 +61,7 @@ class PrestamistaResource extends Resource
                 Tables\Columns\TextColumn::make('razon_social')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('tipo')
-                    ->sortable(),
+                    //->sortable(),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('tipo')

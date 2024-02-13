@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('prestamistas', function (Blueprint $table) {
             $table->id();
-            $table->char('codigo');
+            $table->string('codigo');
             $table->string('razon_social');
-            $table->char('tipo');
+            $table->string('tipo');
             $table->text('detalles')->nullable();
             $table->timestamps();
         });
