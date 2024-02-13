@@ -57,7 +57,7 @@ class PrestamoResource extends Resource
                 Forms\Components\DatePicker::make('fecha_devolucion')
                     ->label('Fecha de devolución')
                     ->required()
-                    ->minDate(now())
+                    //->minDate(now())
                     ->visibleOn('edit'),
                 Forms\Components\TextInput::make('cantidad')
                     ->numeric()
@@ -69,9 +69,9 @@ class PrestamoResource extends Resource
                     ->options([
                         'prestado' => 'Prestado',
                         'devuelto' => 'Devuelto'
-                    ])
-                    ->default('prestado')
-                    ->selectablePlaceholder(false),
+                    ]),
+                    //>default('prestado')
+                    //->selectablePlaceholder(false),
                 Forms\Components\Textarea::make('observaciones')
                     ->columnSpanFull(),
             ]);
@@ -84,7 +84,7 @@ class PrestamoResource extends Resource
                 Tables\Columns\TextColumn::make('prestamista.razon_social')
                     ->label('Prestamista'),
                 Tables\Columns\TextColumn::make('ejemplare.nombre')
-                    ->label('Libro prestado'),
+                    ->label('Ejemplar prestado'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Fecha de préstamo')
                     ->date(),

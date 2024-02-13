@@ -11,7 +11,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Wizard\Step;
 use App\Models\Prestamista;
-
+use Illuminate\Database\Eloquent\Model;
 
 class CreatePrestamo extends CreateRecord
 {
@@ -22,6 +22,20 @@ class CreatePrestamo extends CreateRecord
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
+    }
+
+    //Guardar de manera personalizada
+    protected function handleRecordCreation(array $data): Model
+    {
+        $ejemplare_id = $data['ejemplare_id'];
+        $cantidad = $data['cantidad'];
+        $ejemplar = Ejemplare::find($ejemplare_id);
+
+        $ejemplar->update([
+            'cantidad' => $ejemplar->cantidad - $cantidad
+        ]);
+
+        return static::getModel()::create($data);
     }
 
     protected function getSteps(): array
@@ -42,8 +56,8 @@ class CreatePrestamo extends CreateRecord
                         ->searchable(['razon_social', 'codigo'])
                         ->preload(),
                 ]),
-            Step::make('Libro o Tesis')
-                ->description('Seleccione un libro o una tesis')
+            Step::make('Ejemplar')
+                ->description('Seleccione un ejemplar')
                 ->schema([
                     Select::make('ejemplare_id')
                         ->label('Ejemplar')
