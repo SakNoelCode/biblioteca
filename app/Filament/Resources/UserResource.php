@@ -40,9 +40,14 @@ class UserResource extends Resource
                     ->email(),
                 Forms\Components\TextInput::make('password')
                     ->label('Contraseña')
+                    ->hiddenOn('edit')
                     ->minLength(8)
                     ->required()
                     ->password(),
+                Forms\Components\Select::make('roles')
+                    ->label('Seleccione rol')
+                    ->required()
+                    ->relationship('roles', 'name'),
             ]);
     }
 
@@ -54,6 +59,8 @@ class UserResource extends Resource
                     ->label('Nombre'),
                 Tables\Columns\TextColumn::make('email')
                     ->label('Correo eléctronico'),
+                Tables\Columns\TextColumn::make('roles.name')
+                    ->label('Rol')
             ])
             ->filters([
                 //

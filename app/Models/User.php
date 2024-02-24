@@ -11,10 +11,11 @@ use Illuminate\Notifications\Notifiable;
 use Filament\Panel;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -54,8 +55,8 @@ class User extends Authenticatable implements FilamentUser
     }
 
     //Encriptar Password
-    public function setPasswordAttribute($value)
+   /* public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
-    }
+    }*/
 }
