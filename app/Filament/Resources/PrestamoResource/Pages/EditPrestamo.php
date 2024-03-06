@@ -7,6 +7,7 @@ use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use App\Filament\Resources\CustomerResource\Pages;
 use App\Models\Ejemplare;
+use Carbon\Carbon;
 use Filament\Resources\Pages\Page;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,13 +30,16 @@ class EditPrestamo extends EditRecord
     protected function handleRecordUpdate(Model $record, array $data): Model
     {
         $ejemplare_id = $data['ejemplare_id'];
-        $cantidad = $data['cantidad'];
+        $cantidad = $data['cantidad'];        
+
         $ejemplar = Ejemplare::find($ejemplare_id);
 
-        if ($data['estado'] == 'devuelto') {
+        if ($data['estado'] == 'devuelto' && $record->estado != 'devuelto') {
             $ejemplar->update([
                 'cantidad' => $ejemplar->cantidad + $cantidad
             ]);
+
+            $data['fecha_devolucion'] = Carbon::now()->toDateString();
         }
 
         $record->update($data);

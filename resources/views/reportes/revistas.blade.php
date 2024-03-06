@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Prestamos</title>
+    <title>Lista de Revistas</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -58,32 +58,28 @@
 
 <body>
     <div class="header">
-        <h1>Reporte de Prestamos</h1>
+        <h1>Reporte de Ejemplares Revistas</h1>
     </div>
 
     <div class="table-container">
         <table class="prestamistas-table">
             <thead>
                 <tr>
-                    <th>N°</th>
-                    <th>Prestamista</th>
-                    <th>Ejemplar prestado</th>
-                    <th>Fecha de prestamo</th>
-                    <th>Fecha de devolución</th>
+                    <th>Nombre</th>
+                    <th>Fecha de publicación</th>
+                    <th>N° Páginas</th>
+                    <th>Pais/Ciudad</th>
                     <th>Cantidad</th>
-                    <th>Estado</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($prestamos as $item)
+                @foreach ($registros as $item)
                 <tr>
-                    <td>{{$item->id}}</td>
-                    <td>{{$item->prestamista->razon_social}}</td>
-                    <td>{{$item->ejemplare->nombre}}</td>
-                    <td>{{date('d/m/Y',strtotime($item->created_at))}}</td>
-                    <td>{{$item->fecha_devolucion ? date('d/m/Y',strtotime($item->fecha_devolucion)) : ''}}</td>
+                    <td>{{$item->nombre}}</td>
+                    <td>{{$item->fecha_publicacion}}</td>
+                    <td>{{$item->numero_paginas}}</td>
+                    <td>{{$item->pais_ciudad}}</td>
                     <td>{{$item->cantidad}}</td>
-                    <td>{{ucfirst($item->estado)}}</td>
                 </tr>
                 @endforeach
             </tbody>

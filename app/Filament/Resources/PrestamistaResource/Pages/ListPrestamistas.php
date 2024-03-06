@@ -17,7 +17,9 @@ class ListPrestamistas extends ListRecords
             Actions\CreateAction::make(),
             Action::make('Reporte')
             ->url(fn(): string =>route('prestamistas.download'))
-            ->openUrlInNewTab(),
+            ->openUrlInNewTab()
+            ->color('info')
+            ->icon('heroicon-o-arrow-down-tray'),
         ];
     }
 }

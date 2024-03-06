@@ -16,11 +16,20 @@ class ListPrestamos extends ListRecords
         return [
             Actions\CreateAction::make(),
             Action::make('Prestamos')
-            ->url(fn():string => route('prestamos.download'))
-            ->openUrlInNewTab(),
-            Action::make('Prestamos no entregados')
-            ->url(fn():string => route('prestamos-no-entregados.download'))
-            ->openUrlInNewTab()
+                ->url(fn (): string => route('prestamos.download'))
+                ->openUrlInNewTab()
+                ->color('info')
+                ->icon('heroicon-o-arrow-down-tray'),
+            Action::make('Prestamos vencidos')
+                ->url(fn (): string => route('prestamos-vencidos.download'))
+                ->openUrlInNewTab()
+                ->color('info')
+                ->icon('heroicon-o-arrow-down-tray'),
+            Action::make('Prestamos pendientes')
+                ->url(fn (): string => route('prestamos-pendientes.download'))
+                ->openUrlInNewTab()
+                ->color('info')
+                ->icon('heroicon-o-arrow-down-tray'),
         ];
     }
 }

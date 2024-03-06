@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Prestamos</title>
+    <title>Lista de Prestamos pendientes</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -58,7 +58,7 @@
 
 <body>
     <div class="header">
-        <h1>Reporte de Prestamos</h1>
+        <h1>Reporte de Prestamos pendientes</h1>
     </div>
 
     <div class="table-container">
@@ -69,9 +69,8 @@
                     <th>Prestamista</th>
                     <th>Ejemplar prestado</th>
                     <th>Fecha de prestamo</th>
-                    <th>Fecha de devolución</th>
+                    <th>Fecha de devolución máxima</th>
                     <th>Cantidad</th>
-                    <th>Estado</th>
                 </tr>
             </thead>
             <tbody>
@@ -81,9 +80,8 @@
                     <td>{{$item->prestamista->razon_social}}</td>
                     <td>{{$item->ejemplare->nombre}}</td>
                     <td>{{date('d/m/Y',strtotime($item->created_at))}}</td>
-                    <td>{{$item->fecha_devolucion ? date('d/m/Y',strtotime($item->fecha_devolucion)) : ''}}</td>
+                    <td>{{date('d/m/Y',strtotime($item->fecha_max_devolucion))}}</td>
                     <td>{{$item->cantidad}}</td>
-                    <td>{{ucfirst($item->estado)}}</td>
                 </tr>
                 @endforeach
             </tbody>

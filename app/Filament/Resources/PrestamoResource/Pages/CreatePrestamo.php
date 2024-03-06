@@ -11,7 +11,12 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Wizard\Step;
 use App\Models\Prestamista;
+use App\Models\Prestamo;
+use Closure;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class CreatePrestamo extends CreateRecord
 {
@@ -52,20 +57,47 @@ class CreatePrestamo extends CreateRecord
                         )
                         ->getOptionLabelFromRecordUsing(fn (Prestamista $record) => "{$record->razon_social} - {$record->codigo}")
                         ->required()
+                        ->live()
                         ->columnSpanFull()
                         ->searchable(['razon_social', 'codigo'])
-                        ->preload(),
+                        ->preload()
+                        ->rules([
+                            function () {
+                                return function (string $attribute, $value, Closure $fail) {
+                                    $existe = Prestamo::where('prestamista_id', $value)
+                                        ->where('estado', 'prestado')
+                                        ->exists();
+                                    if ($existe) {
+                                        $fail('El prestamista tiene un prestamo activo.');
+                                    }
+                                };
+                            }
+                        ]),
+                ]),
+            Step::make('Tipo')
+                ->description('Seleccione el tipo')
+                ->schema([
+                    Select::make('tipo')
+                        ->label('Tipo')
+                        ->options([
+                            'tesis' => 'Tesis',
+                            'libro' => 'Libro',
+                            'separata' => 'Separata',
+                            'revista' => 'Revista'
+                        ])
+                        ->required()
+                        ->live()
+                        ->afterStateUpdated(fn (Set $set) => $set('ejemplare_id', null)),
                 ]),
             Step::make('Ejemplar')
-                ->description('Seleccione un ejemplar')
+                ->description('Seleccione el ejemplar')
                 ->schema([
                     Select::make('ejemplare_id')
                         ->label('Ejemplar')
-                        ->relationship(
-                            name: 'ejemplare',
-                            titleAttribute: 'nombre'
-                        )
-                        ->getOptionLabelFromRecordUsing(fn (Ejemplare $record) => "{$record->nombre}")
+                        ->options(fn (Get $get): Collection => Ejemplare::query()
+                            ->where('tipo', $get('tipo'))
+                            ->pluck('nombre', 'id'))
+                        ->live()
                         ->required()
                         ->columnSpanFull()
                         ->searchable()
@@ -79,9 +111,21 @@ class CreatePrestamo extends CreateRecord
                         ->minDate(now())
                         ->required(),
                     TextInput::make('cantidad')
+                        ->default(1)
+                        ->readOnly()
                         ->numeric()
-                        ->required()
-                        ->prefix('N°'),
+                        ->prefix('N°')
+                        ->rules([
+                            fn (Get $get): Closure => function (string $attribute, $value, Closure $fail) use ($get) {
+                                $id = (int) $get('ejemplare_id');
+                                $existe = Ejemplare::where('id', $id)
+                                    ->where('cantidad', '=', 0)
+                                    ->exists();
+                                if ($existe) {
+                                    $fail("Ya no existe la cantidad suficiente del ejemplar.");
+                                }
+                            },
+                        ]),
                     Textarea::make('observaciones')
                         ->columnSpanFull(),
                 ]),
