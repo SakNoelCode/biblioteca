@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('tipo'); //libro, tesis, revista, separata
             $table->foreignId('categoria_id')->nullable()->constrained('categorias')->onDelete('cascade');
             $table->foreignId('subcategoria_id')->nullable()->constrained('subcategorias')->cascadeOnDelete();
+            $table->integer('veces_prestado')->unsigned()->default(0);
             $table->timestamps();
         });
     }

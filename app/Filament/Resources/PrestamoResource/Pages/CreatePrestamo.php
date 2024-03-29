@@ -37,7 +37,8 @@ class CreatePrestamo extends CreateRecord
         $ejemplar = Ejemplare::find($ejemplare_id);
 
         $ejemplar->update([
-            'cantidad' => $ejemplar->cantidad - $cantidad
+            'cantidad' => $ejemplar->cantidad - $cantidad,
+            'veces_prestado' => $ejemplar->veces_prestado + 1,
         ]);
 
         return static::getModel()::create($data);

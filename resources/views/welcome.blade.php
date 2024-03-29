@@ -10,11 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!--====== Title ======-->
-    <title>Sistema de Biblioteca</title>
+    <title>Biblioteca de la Fisme</title>
 
 
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" type="image/png">
+    <link rel="shortcut icon" href="{{asset('assets/images/logo-untrm.png')}}" type="image/png">
 
     <!--====== Slick css ======-->
     <link rel="stylesheet" href="{{asset('assets/css/slick.css')}}">
@@ -42,8 +42,8 @@
                 <div class="row">
                     <div class="w-full">
                         <nav class="flex items-center justify-between navbar navbar-expand-md">
-                            <a class="mr-4 navbar-brand" href="index.html">
-                                <img src="assets/images/logo.svg" alt="Logo">
+                            <a class="mr-4 navbar-brand" href="#">
+                                <img src="assets/images/logo-untrm.png" alt="Logo" style="width: 100px;">
                             </a>
 
                             <button class="block navbar-toggler focus:outline-none md:hidden" type="button" data-toggle="collapse" data-target="#navbarOne" aria-controls="navbarOne" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,13 +89,15 @@
             </div> <!-- container -->
         </div> <!-- navgition -->
 
-        <div id="home" class="relative z-10 header-hero" style="background-image: url(assets/images/header-bg.jpg)">
+        <div id="home" class="relative z-10 header-hero" style="background-image: url(assets/images/biblioteca.jpeg)">
             <div class="container">
                 <div class="justify-center row">
                     <div class="w-full lg:w-5/6 xl:w-2/3">
                         <div class="pt-48 pb-64 text-center header-content">
-                            <h3 class="mb-5 text-3xl font-semibold leading-tight text-gray-900 md:text-5xl">Sistema de gestión de biblioteca de la FISME - BAGUA</h3>
-                            <p class="px-5 mb-10 text-xl text-gray-700">Buscas un libro?, una tesis?, consulta entre nuestros registros que tenemos para ti y solicita un préstamo</p>
+                            <h3 class="mb-5 text-3xl font-semibold leading-tight text-gray-900 md:text-5xl">¡Bienvenido a la Biblioteca Virtual de la FISME BAGUA!</h3>
+                            <p class="px-5 mb-10 text-xl text-gray-700">
+                                ¿Buscas recursos para tus estudios? ¡No busques más! Nuestra biblioteca virtual ofrece una amplia gama de materiales académicos y científicos que te ayudarán a profundizar en tus investigaciones y alcanzar tus metas educativas.
+                            </p>
                             <ul class="flex flex-wrap justify-center">
                                 <li><a class="mx-3 main-btn gradient-btn" href="javascript:void(0)">Realizar búsqueda</a></li>
                                 <li><a class="mx-3 main-btn video-popup" href="https://www.youtube.com/watch?v=r44RKWyfcFw">Ver videotutorial <i class="ml-2 lni-play"></i></a></li>
@@ -119,8 +121,10 @@
             <div class="flex">
                 <div class="w-full mx-4 lg:w-1/2">
                     <div class="pb-10 section-title">
-                        <h4 class="title">Que ofrece la Biblioteca</h4>
-                        <p class="text">El sistema ha sido creado para facilitar el acceso de la biblioteca a los estudiantes</p>
+                        <h4 class="title">¿Te apasiona la lectura?</h4>
+                        <p class="text">
+                            Descubre una experiencia de lectura envolvente con nuestra interfaz fácil de usar y funciones interactivas.
+                        </p>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
@@ -133,7 +137,7 @@
                                     <i class="lni-bolt"></i>
                                 </div>
                                 <div class="mb-8 ml-0 services-content media-body sm:ml-3">
-                                    <h4 class="services-title">Búsqueda rápida</h4>
+                                    <h4 class="services-title">Busqueda rápida</h4>
                                     <p class="text">Escribe el libro que estas buscando y revisa si esta disponible.</p>
                                 </div>
                             </div> <!-- services content -->
@@ -144,8 +148,8 @@
                                     <i class="lni-bar-chart"></i>
                                 </div>
                                 <div class="mb-8 ml-0 services-content media-body sm:ml-3">
-                                    <h4 class="services-title">Libros y tesis</h4>
-                                    <p class="text">No solo tenemos libros, también tenemos tesis de acceso libre.</p>
+                                    <h4 class="services-title">Libros, tesis y más</h4>
+                                    <p class="text">No solo tenemos libros, también tenemos tesis, revistas y artículos.</p>
                                 </div>
                             </div> <!-- services content -->
                         </div>
@@ -155,8 +159,8 @@
                                     <i class="lni-brush"></i>
                                 </div>
                                 <div class="mb-8 ml-0 services-content media-body sm:ml-3">
-                                    <h4 class="services-title">Préstamos</h4>
-                                    <p class="text">La gestión de libros se basa en préstamos en un tiempo limitado, tienes que devolverlo.</p>
+                                    <h4 class="services-title">Prestamos</h4>
+                                    <p class="text">Realizamos el prestamo de libros por tiempo limitado, tienes que devolverlo.</p>
                                 </div>
                             </div> <!-- services content -->
                         </div>
@@ -167,7 +171,7 @@
                                 </div>
                                 <div class="mb-8 ml-0 services-content media-body sm:ml-3">
                                     <h4 class="services-title">Solo personal FISME</h4>
-                                    <p class="text">Actualmente solo hacemos prestámos a estudiante, docentes o personal de la FISME.</p>
+                                    <p class="text">Actualmente solo hacemos prestamos a estudiante, docentes o personal de la FISME.</p>
                                 </div>
                             </div> <!-- services content -->
                         </div>
@@ -177,7 +181,7 @@
         </div> <!-- container -->
         <div class="services-image">
             <div class="image">
-                <img src="assets/images/services.png" alt="Services">
+                <img src="assets/images/persona-leendo3.png" alt="Services">
             </div>
         </div> <!-- services image -->
     </section>
@@ -191,36 +195,43 @@
             <div class="justify-center row">
                 <div class="w-full mx-4 lg:w-1/2">
                     <div class="pb-10 text-center section-title">
-                        <h4 class="title">Libros populares</h4>
-                        <p class="text">Echa un vistaso a los libros que más veces han sido prestados, es posible que también quieras leerlo!</p>
+                        <h4 class="title">¡Los Más Populares!</h4>
+                        <p class="text">
+                            Sumérgete en una selección excepcional de los libros más cautivadores y fascinantes,
+                            recomendados especialmente para ti.
+                        </p>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
             <div class="justify-center row">
+
                 <div class="w-full sm:w-3/4 md:w-3/4 lg:w-1/3">
-                    <div class="single-pricing">
-                        <div class="text-center pricing-header">
-                            <h5 class="sub-title">Prácticas de programación</h5>
-                            <span class="price">435</span>
+                    <div class="single-pricing enterprise">
+                        <div class="absolute top-0 left-0 w-32 mt-3 ml-3 pricing-flower">
+                            <img src="assets/images/flower.svg" alt="flower">
+                        </div>
+                        <div class="text-right pricing-header">
+                            <h5 class="sub-title">Mi primer libro de programación</h5>
+                            <span class="price">1029</span>
                             <p class="year">veces prestado</p>
                         </div>
                         <div class="mb-8 pricing-list">
                             <ul>
                                 <li><i class="lni-check-mark-circle"></i> Autor: Don Quijote</li>
-                                <li><i class="lni-check-mark-circle"></i> Edición: 2024-II</li>
+                                <li><i class="lni-check-mark-circle"></i> Editorial: Navarrete</li>
                                 <li><i class="lni-check-mark-circle"></i> Núm pag: 457</li>
                                 <li><i class="lni-check-mark-circle"></i> Disponible</li>
                             </ul>
                         </div>
                         <div class="text-center pricing-btn">
-                            <a class="main-btn" href="javascript:void(0)">Ver más</a>
+                            <a class="main-btn" href="javascript:void(0)">ver más</a>
                         </div>
                         <div class="bottom-shape">
                             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 112.35">
                                 <defs>
                                     <style>
-                                        .color-1 {
-                                            fill: #2bdbdc;
+                                        .color-3 {
+                                            fill: #4da422;
                                             isolation: isolate;
                                         }
 
@@ -244,10 +255,10 @@
                                 <title>bottom-part1</title>
                                 <g id="bottom-part">
                                     <g id="Group_747" data-name="Group 747">
-                                        <path id="Path_294" data-name="Path 294" class="cls-1 color-1" d="M0,24.21c120-55.74,214.32,2.57,267,0S349.18,7.4,349.18,7.4V82.35H0Z" transform="translate(0 0)" />
-                                        <path id="Path_297" data-name="Path 297" class="cls-2 color-1" d="M350,34.21c-120-55.74-214.32,2.57-267,0S.82,17.4.82,17.4V92.35H350Z" transform="translate(0 0)" />
-                                        <path id="Path_296" data-name="Path 296" class="cls-3 color-1" d="M0,44.21c120-55.74,214.32,2.57,267,0S349.18,27.4,349.18,27.4v74.95H0Z" transform="translate(0 0)" />
-                                        <path id="Path_295" data-name="Path 295" class="cls-4 color-1" d="M349.17,54.21c-120-55.74-214.32,2.57-267,0S0,37.4,0,37.4v74.95H349.17Z" transform="translate(0 0)" />
+                                        <path id="Path_294" data-name="Path 294" class="cls-1 color-3" d="M0,24.21c120-55.74,214.32,2.57,267,0S349.18,7.4,349.18,7.4V82.35H0Z" transform="translate(0 0)" />
+                                        <path id="Path_297" data-name="Path 297" class="cls-2 color-3" d="M350,34.21c-120-55.74-214.32,2.57-267,0S.82,17.4.82,17.4V92.35H350Z" transform="translate(0 0)" />
+                                        <path id="Path_296" data-name="Path 296" class="cls-3 color-3" d="M0,44.21c120-55.74,214.32,2.57,267,0S349.18,27.4,349.18,27.4v74.95H0Z" transform="translate(0 0)" />
+                                        <path id="Path_295" data-name="Path 295" class="cls-4 color-3" d="M349.17,54.21c-120-55.74-214.32,2.57-267,0S0,37.4,0,37.4v74.95H349.17Z" transform="translate(0 0)" />
                                     </g>
                                 </g>
                             </svg>
@@ -317,13 +328,10 @@
                 </div>
 
                 <div class="w-full sm:w-3/4 md:w-3/4 lg:w-1/3">
-                    <div class="single-pricing enterprise">
-                        <div class="absolute top-0 left-0 w-32 mt-3 ml-3 pricing-flower">
-                            <img src="assets/images/flower.svg" alt="flower">
-                        </div>
-                        <div class="text-right pricing-header">
-                            <h5 class="sub-title">Mi primer libro de programación</h5>
-                            <span class="price">1029</span>
+                    <div class="single-pricing">
+                        <div class="text-center pricing-header">
+                            <h5 class="sub-title">Prácticas de programación</h5>
+                            <span class="price">435</span>
                             <p class="year">veces prestado</p>
                         </div>
                         <div class="mb-8 pricing-list">
@@ -335,14 +343,14 @@
                             </ul>
                         </div>
                         <div class="text-center pricing-btn">
-                            <a class="main-btn" href="javascript:void(0)">ver más</a>
+                            <a class="main-btn" href="javascript:void(0)">Ver más</a>
                         </div>
                         <div class="bottom-shape">
                             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 112.35">
                                 <defs>
                                     <style>
-                                        .color-3 {
-                                            fill: #4da422;
+                                        .color-1 {
+                                            fill: #2bdbdc;
                                             isolation: isolate;
                                         }
 
@@ -366,16 +374,17 @@
                                 <title>bottom-part1</title>
                                 <g id="bottom-part">
                                     <g id="Group_747" data-name="Group 747">
-                                        <path id="Path_294" data-name="Path 294" class="cls-1 color-3" d="M0,24.21c120-55.74,214.32,2.57,267,0S349.18,7.4,349.18,7.4V82.35H0Z" transform="translate(0 0)" />
-                                        <path id="Path_297" data-name="Path 297" class="cls-2 color-3" d="M350,34.21c-120-55.74-214.32,2.57-267,0S.82,17.4.82,17.4V92.35H350Z" transform="translate(0 0)" />
-                                        <path id="Path_296" data-name="Path 296" class="cls-3 color-3" d="M0,44.21c120-55.74,214.32,2.57,267,0S349.18,27.4,349.18,27.4v74.95H0Z" transform="translate(0 0)" />
-                                        <path id="Path_295" data-name="Path 295" class="cls-4 color-3" d="M349.17,54.21c-120-55.74-214.32,2.57-267,0S0,37.4,0,37.4v74.95H349.17Z" transform="translate(0 0)" />
+                                        <path id="Path_294" data-name="Path 294" class="cls-1 color-1" d="M0,24.21c120-55.74,214.32,2.57,267,0S349.18,7.4,349.18,7.4V82.35H0Z" transform="translate(0 0)" />
+                                        <path id="Path_297" data-name="Path 297" class="cls-2 color-1" d="M350,34.21c-120-55.74-214.32,2.57-267,0S.82,17.4.82,17.4V92.35H350Z" transform="translate(0 0)" />
+                                        <path id="Path_296" data-name="Path 296" class="cls-3 color-1" d="M0,44.21c120-55.74,214.32,2.57,267,0S349.18,27.4,349.18,27.4v74.95H0Z" transform="translate(0 0)" />
+                                        <path id="Path_295" data-name="Path 295" class="cls-4 color-1" d="M349.17,54.21c-120-55.74-214.32,2.57-267,0S0,37.4,0,37.4v74.95H349.17Z" transform="translate(0 0)" />
                                     </g>
                                 </g>
                             </svg>
                         </div>
                     </div> <!-- single pricing -->
                 </div>
+
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
