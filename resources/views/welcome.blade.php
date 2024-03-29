@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="Sistema de biblioteca">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!--====== Title ======-->
@@ -28,6 +29,8 @@
     <!--====== tailwind css ======-->
     <link rel="stylesheet" href="{{asset('assets/css/tailwind.css')}}">
 
+    <!--Sweet Alert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 </head>
@@ -99,7 +102,7 @@
                                 ¿Buscas recursos para tus estudios? ¡No busques más! Nuestra biblioteca virtual ofrece una amplia gama de materiales académicos y científicos que te ayudarán a profundizar en tus investigaciones y alcanzar tus metas educativas.
                             </p>
                             <ul class="flex flex-wrap justify-center">
-                                <li><a class="mx-3 main-btn gradient-btn" href="javascript:void(0)">Realizar búsqueda</a></li>
+                                <li><a class="mx-3 main-btn gradient-btn page-scroll" href="#call-to-action">Realizar búsqueda</a></li>
                                 <li><a class="mx-3 main-btn video-popup" href="https://www.youtube.com/watch?v=r44RKWyfcFw">Ver videotutorial <i class="ml-2 lni-play"></i></a></li>
                             </ul>
                         </div> <!-- header content -->
@@ -205,27 +208,30 @@
             </div> <!-- row -->
             <div class="justify-center row">
 
+                @foreach ($librosPopulares as $item => $libro)
+
+                @if ($item == 0)
                 <div class="w-full sm:w-3/4 md:w-3/4 lg:w-1/3">
                     <div class="single-pricing enterprise">
                         <div class="absolute top-0 left-0 w-32 mt-3 ml-3 pricing-flower">
                             <img src="assets/images/flower.svg" alt="flower">
                         </div>
                         <div class="text-right pricing-header">
-                            <h5 class="sub-title">Mi primer libro de programación</h5>
-                            <span class="price">1029</span>
+                            <h5 class="sub-title">{{$libro->nombre}}</h5>
+                            <span class="price">{{$libro->veces_prestado}}</span>
                             <p class="year">veces prestado</p>
                         </div>
                         <div class="mb-8 pricing-list">
                             <ul>
-                                <li><i class="lni-check-mark-circle"></i> Autor: Don Quijote</li>
-                                <li><i class="lni-check-mark-circle"></i> Editorial: Navarrete</li>
-                                <li><i class="lni-check-mark-circle"></i> Núm pag: 457</li>
-                                <li><i class="lni-check-mark-circle"></i> Disponible</li>
+                                <li><i class="lni-check-mark-circle"></i> Autor: {{$libro->autor}}</li>
+                                <li><i class="lni-check-mark-circle"></i> Editorial: {{$libro->editorial}}</li>
+                                <li><i class="lni-check-mark-circle"></i> Núm pag: {{$libro->numero_paginas}}</li>
+                                <li><i class="lni-check-mark-circle"></i> {{$libro->cantidad > 0 ? 'Disponible' : 'No Disponible'}} </li>
                             </ul>
                         </div>
-                        <div class="text-center pricing-btn">
+                        <!--div class="text-center pricing-btn">
                             <a class="main-btn" href="javascript:void(0)">ver más</a>
-                        </div>
+                        </div---->
                         <div class="bottom-shape">
                             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 112.35">
                                 <defs>
@@ -265,28 +271,30 @@
                         </div>
                     </div> <!-- single pricing -->
                 </div>
+                @endif
 
+                @if ($item == 1)
                 <div class="w-full sm:w-3/4 md:w-3/4 lg:w-1/3">
                     <div class="single-pricing pro">
                         <div class="absolute top-0 right-0 w-40 -mr-20 pricing-baloon">
                             <img src="assets/images/baloon.svg" alt="baloon">
                         </div>
                         <div class="pricing-header">
-                            <h5 class="sub-title">Buenas prácticas de programación</h5>
-                            <span class="price">789</span>
+                            <h5 class="sub-title">{{$libro->nombre}}</h5>
+                            <span class="price">{{$libro->veces_prestado}}</span>
                             <p class="year">veces prestado</p>
                         </div>
                         <div class="mb-8 pricing-list">
                             <ul>
-                                <li><i class="lni-check-mark-circle"></i> Autor: Don Quijote</li>
-                                <li><i class="lni-check-mark-circle"></i> Edición: 2024-II</li>
-                                <li><i class="lni-check-mark-circle"></i> Núm pag: 457</li>
-                                <li><i class="lni-check-mark-circle"></i> Disponible</li>
+                                <li><i class="lni-check-mark-circle"></i> Autor: {{$libro->autor}}</li>
+                                <li><i class="lni-check-mark-circle"></i> Editorial: {{$libro->editorial}}</li>
+                                <li><i class="lni-check-mark-circle"></i> Núm pag: {{$libro->numero_paginas != '' ? $libro->numero_paginas : 'No definido'}}</li>
+                                <li><i class="lni-check-mark-circle"></i> {{$libro->cantidad > 0 ? 'Disponible' : 'No Disponible'}} </li>
                             </ul>
                         </div>
-                        <div class="text-center pricing-btn">
+                        <!--div class="text-center pricing-btn">
                             <a class="main-btn" href="javascript:void(0)">ver más</a>
-                        </div>
+                        </div--->
                         <div class="bottom-shape">
                             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 112.35">
                                 <defs>
@@ -326,25 +334,27 @@
                         </div>
                     </div> <!-- single pricing -->
                 </div>
+                @endif
 
+                @if ($item == 2)
                 <div class="w-full sm:w-3/4 md:w-3/4 lg:w-1/3">
                     <div class="single-pricing">
                         <div class="text-center pricing-header">
-                            <h5 class="sub-title">Prácticas de programación</h5>
-                            <span class="price">435</span>
+                            <h5 class="sub-title">{{$libro->nombre}}</h5>
+                            <span class="price">{{$libro->veces_prestado}}</span>
                             <p class="year">veces prestado</p>
                         </div>
                         <div class="mb-8 pricing-list">
                             <ul>
-                                <li><i class="lni-check-mark-circle"></i> Autor: Don Quijote</li>
-                                <li><i class="lni-check-mark-circle"></i> Edición: 2024-II</li>
-                                <li><i class="lni-check-mark-circle"></i> Núm pag: 457</li>
-                                <li><i class="lni-check-mark-circle"></i> Disponible</li>
+                                <li><i class="lni-check-mark-circle"></i> Autor: {{$libro->autor}}</li>
+                                <li><i class="lni-check-mark-circle"></i> Editorial: {{$libro->editorial}}</li>
+                                <li><i class="lni-check-mark-circle"></i> Núm pag: {{$libro->numero_paginas != '' ? $libro->numero_paginas : 'No definido'}}</li>
+                                <li><i class="lni-check-mark-circle"></i> {{$libro->cantidad > 0 ? 'Disponible' : 'No Disponible'}} </li>
                             </ul>
                         </div>
-                        <div class="text-center pricing-btn">
+                        <!---div class="text-center pricing-btn">
                             <a class="main-btn" href="javascript:void(0)">Ver más</a>
-                        </div>
+                        </div---->
                         <div class="bottom-shape">
                             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 112.35">
                                 <defs>
@@ -384,6 +394,9 @@
                         </div>
                     </div> <!-- single pricing -->
                 </div>
+                @endif
+
+                @endforeach
 
             </div> <!-- row -->
         </div> <!-- container -->
@@ -402,13 +415,13 @@
             <div class="justify-end row">
                 <div class="w-full lg:w-1/2">
                     <div class="py-32 mx-auto text-center call-action-content">
-                        <h2 class="mb-5 text-5xl font-semibold leading-tight text-white">Quieres recibir actualizaciones?</h2>
-                        <p class="mb-6 text-white">Te avisaremos cuando se registre un nuevo libro.</p>
-                        <form action="#" class="relative w-5/6 mx-auto md:w-2/3 call-newsletter">
-                            <i class="absolute top-0 left-0 pt-3 pl-5 text-xl text-blue-600 lni-envelope"></i>
-                            <input type="email" placeholder="john@email.com" class="w-full py-3 pl-12 pr-40 bg-white rounded-full focus:outline-none">
-                            <button type="submit" class="absolute top-0 right-0 px-6 py-2 mt-1 mr-1 font-bold text-white duration-300 bg-blue-600 rounded-full hover:bg-blue-500">Suscribirse</button>
-                        </form>
+                        <h2 class="mb-5 text-5xl font-semibold leading-tight text-white">¿Buscas algún ejemplar en especial?</h2>
+                        <p class="mb-6 text-white">Usa nuestro buscador y verifica si lo tenemos disponible.</p>
+                        <div class="relative w-5/6 mx-auto md:w-2/3 call-newsletter">
+                            <!--i class="absolute top-0 left-0 pt-3 pl-5 text-xl text-blue-600 lni-envelope"></i---->
+                            <input type="text" class="w-full py-3 pl-6 pr-40 bg-white rounded-full focus:outline-none" disabled>
+                            <button onclick="clickBuscarLibro()" class="absolute top-0 right-0 px-6 py-2 mt-1 mr-1 font-bold text-white duration-300 bg-blue-600 rounded-full hover:bg-blue-500">Buscar</button>
+                        </div>
                     </div> <!-- slider-content -->
                 </div>
             </div> <!-- row -->
@@ -425,7 +438,7 @@
                 <div class="w-full mx-4 lg:w-1/2">
                     <div class="pb-10 text-center section-title">
                         <h4 class="title">Nuestras tesis</h4>
-                        <p class="text">Revisa las tesis más populares de nuestros estudiantes, seguro te ayudara a avanzar tu proyecto y puede servirte de inspiración!</p>
+                        <p class="text">Revisa las tesis más recientes de nuestros egresados profesionales, seguro te ayudaran a avanzar en tu proyecto y puede servirte de inspiración!</p>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
@@ -433,54 +446,23 @@
             <div class="row">
                 <div class="w-full">
                     <div class="row testimonial-active">
+                        @foreach ($tesis as $item)
                         <div class="w-full lg:w-1/3">
                             <div class="text-center single-testimonial">
                                 <div class="testimonial-image">
-                                    <img src="assets/images/author-3.jpg" alt="Author">
+                                    <img src="https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png" alt="{{$item->autor}}">
                                 </div>
                                 <div class="testimonial-content">
-                                    <p class="pb-5 mb-6 border-b border-gray-300">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed! Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
-                                    <h6 class="text-lg font-semibold text-gray-900">Isabela Moreira</h6>
-                                    <span class="text-sm text-gray-700">CEO, GrayGrids</span>
+                                    <p class="pb-5 mb-6 border-b border-gray-300">
+                                        {{$item->nombre}}
+                                    </p>
+                                    <h6 class="text-lg font-semibold text-gray-900">{{$item->autor}}</h6>
+                                    <span class="text-sm text-gray-700">Publicada el: {{\Carbon\Carbon::parse($item->fecha_publicacion)->format('d/m/Y')}}</span>
                                 </div>
                             </div> <!-- single testimonial -->
                         </div>
-                        <div class="w-full lg:w-1/3">
-                            <div class="text-center single-testimonial">
-                                <div class="testimonial-image">
-                                    <img src="assets/images/author-1.jpg" alt="Author">
-                                </div>
-                                <div class="testimonial-content">
-                                    <p class="pb-5 mb-6 border-b border-gray-300">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed! Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
-                                    <h6 class="text-lg font-semibold text-gray-900">Fiona</h6>
-                                    <span class="text-sm text-gray-700">Lead Designer, UIdeck</span>
-                                </div>
-                            </div> <!-- single testimonial -->
-                        </div>
-                        <div class="w-full lg:w-1/3">
-                            <div class="text-center single-testimonial">
-                                <div class="testimonial-image">
-                                    <img src="assets/images/author-2.jpg" alt="Author">
-                                </div>
-                                <div class="testimonial-content">
-                                    <p class="pb-5 mb-6 border-b border-gray-300">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed! Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
-                                    <h6 class="text-lg font-semibold text-gray-900">Elon Musk</h6>
-                                    <span class="text-sm text-gray-700">CEO, SpaceX</span>
-                                </div>
-                            </div> <!-- single testimonial -->
-                        </div>
-                        <div class="w-full lg:w-1/3">
-                            <div class="text-center single-testimonial">
-                                <div class="testimonial-image">
-                                    <img src="assets/images/author-4.jpg" alt="Author">
-                                </div>
-                                <div class="testimonial-content">
-                                    <p class="pb-5 mb-6 border-b border-gray-300">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed! Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
-                                    <h6 class="text-lg font-semibold text-gray-900">Fajar Siddiq</h6>
-                                    <span class="text-sm text-gray-700">CEO, MakerFlix</span>
-                                </div>
-                            </div> <!-- single testimonial -->
-                        </div>
+                        @endforeach
+
                     </div> <!-- row -->
                 </div>
             </div> <!-- row -->
@@ -494,26 +476,26 @@
     <section class="py-16 bg-gray-100 client-logo-area">
         <div class="container">
             <div class="items-center row">
-                <div class="w-1/2 md:w-1/4">
-                    <div class="flex justify-center single-client">
-                        <img src="assets/images/client_logo_01.png" alt="Logo">
+                <div class="w-full sm:w-1/2 flex justify-center">
+                    <div class="single-client md:w-1/2">
+                        <img src="assets/images/untrm.svg" alt="Logo">
                     </div> <!-- single client -->
                 </div>
-                <div class="w-1/2 md:w-1/4">
-                    <div class="flex justify-center single-client">
-                        <img src="assets/images/client_logo_02.png" alt="Logo">
+                <div class="w-full sm:w-1/2 flex justify-center">
+                    <div class="single-client md:w-1/2">
+                        <img src="assets/images/fisme.svg" alt="Logo">
                     </div> <!-- single client -->
                 </div>
-                <div class="w-1/2 md:w-1/4">
+                <!--div class="w-1/2 md:w-1/4">
                     <div class="flex justify-center single-client">
                         <img src="assets/images/client_logo_03.png" alt="Logo">
-                    </div> <!-- single client -->
+                    </div> 
                 </div>
                 <div class="w-1/2 md:w-1/4">
                     <div class="flex justify-center single-client">
                         <img src="assets/images/client_logo_04.png" alt="Logo">
-                    </div> <!-- single client -->
-                </div>
+                    </div> 
+                </div---->
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
@@ -532,52 +514,11 @@
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
-            <div class="justify-center row">
-                <div class="w-full lg:w-2/3">
-                    <div class="contact-form">
-                        <form id="contact-form" action="assets/contact.php" method="post" data-toggle="validator">
-                            <div class="row">
-                                <div class="w-full md:w-1/2">
-                                    <div class="mx-4 mb-6 single-form form-group">
-                                        <input type="text" name="name" placeholder="Your Name" data-error="Name is required." required="required">
-                                        <div class="help-block with-errors"></div>
-                                    </div> <!-- single form -->
-                                </div>
-                                <div class="w-full md:w-1/2">
-                                    <div class="mx-4 mb-6 single-form form-group">
-                                        <input type="email" name="email" placeholder="Your Email" data-error="Valid email is required." required="required">
-                                        <div class="help-block with-errors"></div>
-                                    </div> <!-- single form -->
-                                </div>
-                                <div class="w-full md:w-1/2">
-                                    <div class="mx-4 mb-6 single-form form-group">
-                                        <input type="text" name="subject" placeholder="Subject" data-error="Subject is required." required="required">
-                                        <div class="help-block with-errors"></div>
-                                    </div> <!-- single form -->
-                                </div>
-                                <div class="w-full md:w-1/2">
-                                    <div class="mx-4 mb-6 single-form form-group">
-                                        <input type="text" name="phone" placeholder="Phone" data-error="Phone is required." required="required">
-                                        <div class="help-block with-errors"></div>
-                                    </div> <!-- single form -->
-                                </div>
-                                <div class="w-full">
-                                    <div class="mx-4 mb-6 single-form form-group">
-                                        <textarea rows="5" placeholder="Your Mesaage" name="message" data-error="Please, leave us a message." required="required"></textarea>
-                                        <div class="help-block with-errors"></div>
-                                    </div> <!-- single form -->
-                                </div>
-                                <p class="mx-4 form-message"></p>
-                                <div class="w-full">
-                                    <div class="mx-4 mt-2 text-center single-form form-group">
-                                        <button type="submit" class="main-btn gradient-btn focus:outline-none">send message</button>
-                                    </div> <!-- single form -->
-                                </div>
-                            </div> <!-- row -->
-                        </form>
-                    </div> <!-- row -->
-                </div>
-            </div> <!-- row -->
+
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2015.9917407255273!2d-78.52411182932826!3d-5.6431931282665335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91b4534b224815e3%3A0xc2ba66f00257b86b!2sUniversidad%20Nacional%20Toribio%20Rodr%C3%ADguez%20de%20Mendoza%20de%20Amazonas!5e1!3m2!1ses!2spe!4v1569942129690!5m2!1ses!2spe" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen>
+            </iframe>
+
         </div> <!-- container -->
     </section>
 
@@ -585,14 +526,14 @@
 
     <!--====== FOOTER PART START ======-->
 
-    <footer id="footer" class="bg-gray-100 footer-area">
+    <footer id="footer" class="bg-gray-200 footer-area pb-5">
         <div class="mb-16 footer-widget">
             <div class="container">
                 <div class="row">
                     <div class="w-full">
                         <div class="items-end justify-between block mb-8 footer-logo-support md:flex">
                             <div class="flex items-end footer-logo">
-                                <a class="mt-8" href="index.html"><img src="assets/images/logo.svg" alt="Logo"></a>
+                                <a class="mt-8" href="#"><img src="assets/images/fisme.svg" alt="Logo" style="width: 200px;"></a>
 
                                 <ul class="flex mt-8 ml-8 footer-social">
                                     <li><a href="javascript:void(0)"><i class="lni-facebook-filled"></i></a></li>
@@ -608,47 +549,47 @@
                 <div class="row">
                     <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/6">
                         <div class="mb-8 footer-link">
-                            <h6 class="footer-title">Company</h6>
+                            <h6 class="footer-title">Nuestros socios</h6>
                             <ul>
-                                <li><a href="javascript:void(0)">About</a></li>
-                                <li><a href="javascript:void(0)">Contact</a></li>
-                                <li><a href="javascript:void(0)">Career</a></li>
+                                <li><a href="javascript:void(0)">UNTRM</a></li>
+                                <li><a href="javascript:void(0)">FISME</a></li>
+                                <li><a href="javascript:void(0)">IITIC</a></li>
 
                             </ul>
                         </div> <!-- footer link -->
                     </div>
                     <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
                         <div class="mb-8 footer-link">
-                            <h6 class="footer-title">Product & Services</h6>
+                            <h6 class="footer-title">Desarrollado por</h6>
                             <ul>
-                                <li><a href="javascript:void(0)">Products</a></li>
-                                <li><a href="javascript:void(0)">Business</a></li>
-                                <li><a href="javascript:void(0)">Developer</a></li>
+                                <li><a href="javascript:void(0)">Edwin</a></li>
+                                <li><a href="javascript:void(0)">Flores</a></li>
+                                <li><a href="javascript:void(0)">Desarrollador web</a></li>
                             </ul>
                         </div> <!-- footer link -->
                     </div>
                     <div class="w-full sm:w-5/12 md:w-1/3 lg:w-1/4">
                         <div class="mb-8 footer-link">
-                            <h6 class="footer-title">Help & Suuport</h6>
+                            <h6 class="footer-title">Ayuda y Soporte</h6>
                             <ul>
-                                <li><a href="javascript:void(0)">Support Center</a></li>
+                                <li><a href="javascript:void(0)">Contactar a soporte</a></li>
                                 <li><a href="javascript:void(0)">FAQ</a></li>
-                                <li><a href="javascript:void(0)">Terms & Conditions</a></li>
+                                <li><a href="javascript:void(0)">Términos y condiciones</a></li>
                             </ul>
                         </div> <!-- footer link -->
                     </div>
                     <div class="w-full sm:w-7/12 md:w-1/2 lg:w-1/3">
                         <div class="mb-8 footer-newsletter">
-                            <h6 class="footer-title">Subscribe Newsletter</h6>
+                            <h6 class="footer-title">Suscribirse</h6>
                             <div class="newsletter">
                                 <form action="#" class="relative mb-4">
-                                    <input type="text" placeholder="Your Email" class="w-full py-3 pl-6 pr-12 duration-300 bg-gray-200 border border-gray-200 rounded-full focus:border-blue-600 focus:outline-none">
+                                    <input type="text" placeholder="Tu correo" class="w-full py-3 pl-6 pr-12 duration-300 border border-gray-200 rounded-full focus:border-blue-600 focus:outline-none">
                                     <button type="submit" class="absolute top-0 right-0 mt-3 mr-6 text-xl text-blue-600">
                                         <i class="lni-angle-double-right"></i>
                                     </button>
                                 </form>
                             </div>
-                            <p class="font-medium text-gray-900">Subscribe weekly newsletter to stay upto date. We don’t send spam.</p>
+                            <p class="font-medium text-gray-900">Subscribete a nuestro correo y recibe actualizaciones continuamente.</p>
                         </div> <!-- footer newsletter -->
                     </div>
                 </div> <!-- row -->
@@ -688,6 +629,59 @@
 
     <!--====== Main js ======-->
     <script src="{{asset('assets/js/main.js')}}"></script>
+
+    <!--====== Buscar ejemplar en el sistema ======-->
+    <script>
+        function clickBuscarLibro() {
+            Swal.fire({
+                title: "Ingresa el nombre de lo que buscas",
+                input: "text",
+                inputAttributes: {
+                    autocapitalize: "off"
+                },
+                showCancelButton: true,
+                cancelButtonText: "Cancelar",
+                confirmButtonText: "Buscar",
+                showLoaderOnConfirm: true,
+                preConfirm: async (nombre) => {
+                    try {
+
+                        const response = await fetch('/buscar', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                            },
+                            body: JSON.stringify({
+                                nombre: nombre
+                            })
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(response.statusText);
+                        }
+
+                        return response.json();
+
+                    } catch (error) {
+                        Swal.showValidationMessage(`Request failed: ${error}`);
+                    }
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Resultado de la búsqueda",
+                        html: `<strong>Libro buscado:</strong> ${result.value.nombre} <br>
+                        <strong>Existencia:</strong> ${result.value.existencia}  <br>
+                        <strong>Disponibilidad:</strong> ${result.value.disponibilidad}                        
+                        `,
+                        imageUrl: 'https://us.123rf.com/450wm/virtosmedia/virtosmedia2301/virtosmedia230102080/197222672-retrato-de-un-hombre-con-gafas-leyendo-un-libro-en-la-biblioteca.jpg'
+                    });
+                }
+            });
+        }
+    </script>
 
 </body>
 

@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
 
+Route::post('/buscar',[WelcomeController::class,'buscarEjemplar'])->name('welcome.buscar-ejemplar');
+
 Route::get('/prestamistas/download', [ReportesControlller::class, 'prestamistasDownload'])->name('prestamistas.download');
 Route::get('/prestamos/download', [ReportesControlller::class, 'prestamosDownload'])->name('prestamos.download');
 Route::get('/prestamos-pendientes/download', [ReportesControlller::class, 'prestamosPendientesDownload'])->name('prestamos-pendientes.download');
