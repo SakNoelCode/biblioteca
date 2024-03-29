@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\Column;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class PrestamoResource extends Resource
 {
@@ -113,7 +114,10 @@ class PrestamoResource extends Resource
                     }),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('vencidos')->label('Vencidos')
+                    ->query(fn (Builder $query): Builder => $query
+                        ->where('estado', '<>', 'devuelto')
+                        ->whereDate('fecha_max_devolucion', '<', Carbon::now()->toDateString())),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->label('Devolución'),
@@ -123,7 +127,8 @@ class PrestamoResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('id', 'desc');
     }
 
     public static function getRelations(): array
