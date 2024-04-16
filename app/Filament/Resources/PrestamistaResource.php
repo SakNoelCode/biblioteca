@@ -37,7 +37,9 @@ class PrestamistaResource extends Resource
                     ->label('Código')
                     ->unique('prestamistas', 'codigo', ignoreRecord: true)
                     ->required()
-                    ->maxLength('255'),
+                    ->minLength('8')
+                   // ->type('number')
+                    ->maxLength('10'),
                 Forms\Components\Select::make('tipo')
                     ->required()
                     ->options([
@@ -59,9 +61,10 @@ class PrestamistaResource extends Resource
                 Tables\Columns\TextColumn::make('codigo')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('razon_social')
+                    ->label('Nombres y Apellidos')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('tipo')
-                    //->sortable(),
+                //->sortable(),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('tipo')

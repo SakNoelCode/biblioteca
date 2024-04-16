@@ -36,6 +36,7 @@ class UserResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('email')
                     ->label('Correo eléctronico')
+                    ->unique('users', 'email', ignoreRecord: true)
                     ->required()
                     ->email(),
                 Forms\Components\TextInput::make('password')

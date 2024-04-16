@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Role::create(['name' => 'Administrador']);
+        Role::create(['name' => 'Bibliotecario']);
+        
         $user->assignRole('Administrador');
     }
 }
