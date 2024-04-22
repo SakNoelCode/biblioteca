@@ -6,10 +6,33 @@ use App\Filament\Resources\PrestamoResource;
 use Filament\Actions;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Components\Tab;
+use Illuminate\Database\Eloquent\Builder;
+use Carbon\Carbon;
 
 class ListPrestamos extends ListRecords
 {
     protected static string $resource = PrestamoResource::class;
+
+    public function getTabs(): array
+    {
+        return [
+            'Prestados' => Tab::make()
+                ->modifyQueryUsing(
+                    fn (Builder $query) =>
+                    $query->where('estado', 'prestado')
+                        ->whereDate('fecha_max_devolucion', '>', Carbon::now()->toDateString())
+                ),
+            'Devueltos' => Tab::make()
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('estado', 'devuelto')),
+            'Vencidos' => Tab::make()
+                ->modifyQueryUsing(
+                    fn (Builder $query) =>
+                    $query->where('estado', '<>', 'devuelto')
+                        ->whereDate('fecha_max_devolucion', '<', Carbon::now()->toDateString())
+                ),
+        ];
+    }
 
     protected function getHeaderActions(): array
     {

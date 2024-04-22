@@ -93,18 +93,22 @@ class PrestamoResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('prestamista.razon_social')
+                    ->searchable()
                     ->label('Prestamista'),
                 Tables\Columns\TextColumn::make('ejemplare.nombre')
                     ->label('Ejemplar prestado'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Fecha de préstamo')
-                    ->date(),
+                    ->date()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('fecha_max_devolucion')
                     ->label('Se debe devolver el')
-                    ->date(),
+                    ->date()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('fecha_devolucion')
                     ->label('Se devolvió el')
-                    ->date(),
+                    ->date()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('estado')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
@@ -114,11 +118,10 @@ class PrestamoResource extends Resource
                     }),
             ])
             ->filters([
-                Tables\Filters\Filter::make('vencidos')->label('Vencidos')
+                /* Tables\Filters\Filter::make('vencidos')->label('Vencidos')
                     ->query(fn (Builder $query): Builder => $query
                         ->where('estado', '<>', 'devuelto')
-                        ->whereDate('fecha_max_devolucion', '<', Carbon::now()->toDateString())),
-            ])
+                        ->whereDate('fecha_max_devolucion', '<', Carbon::now()->toDateString())),*/])
             ->actions([
                 Tables\Actions\EditAction::make()->label('Devolución'),
                 //Tables\Actions\ViewAction::make()

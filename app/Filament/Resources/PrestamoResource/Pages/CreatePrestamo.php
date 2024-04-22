@@ -66,7 +66,10 @@ class CreatePrestamo extends CreateRecord
                             function () {
                                 return function (string $attribute, $value, Closure $fail) {
                                     $existe = Prestamo::where('prestamista_id', $value)
-                                        ->where('estado', 'prestado')
+                                        ->where(function ($query) {
+                                            $query->where('estado', 'prestado')
+                                                ->orWhere('estado', 'vencido');
+                                        })
                                         ->exists();
                                     if ($existe) {
                                         $fail('El prestamista tiene un prestamo activo.');

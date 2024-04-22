@@ -65,7 +65,7 @@
         <table class="prestamistas-table">
             <thead>
                 <tr>
-                    <th>N°</th>
+                    <!--th>N°</th--->
                     <th>Prestamista</th>
                     <th>Ejemplar prestado</th>
                     <th>Fecha de prestamo</th>
@@ -76,7 +76,7 @@
             <tbody>
                 @foreach ($prestamos as $item)
                 <tr>
-                    <td>{{$item->id}}</td>
+                    <!--td>{{$item->id}}</td--->
                     <td>{{$item->prestamista->razon_social}}</td>
                     <td>{{$item->ejemplare->nombre}}</td>
                     <td>{{date('d/m/Y',strtotime($item->created_at))}}</td>
