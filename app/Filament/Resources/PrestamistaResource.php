@@ -33,20 +33,21 @@ class PrestamistaResource extends Resource
                     ->required()
                     ->maxLength('255')
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('codigo')
-                    ->label('Código')
-                    ->unique('prestamistas', 'codigo', ignoreRecord: true)
-                    ->required()
-                    ->minLength('8')
-                   // ->type('number')
-                    ->maxLength('10'),
                 Forms\Components\Select::make('tipo')
                     ->required()
+                    ->live()
                     ->options([
                         'docente' => 'Docente',
                         'estudiante' => 'Estudiante',
                         'otro' => 'Otro'
                     ]),
+                Forms\Components\TextInput::make('codigo')
+                    ->label('Código')
+                    ->unique('prestamistas', 'codigo', ignoreRecord: true)
+                    ->required()
+                    ->minLength('8')
+                    // ->type('number')
+                    ->maxLength('10'),
                 Forms\Components\Textarea::make('detalles')
                     ->placeholder('Ingrese información extra sobre el prestamista')
                     ->columnSpanFull()
