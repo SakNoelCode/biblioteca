@@ -42,6 +42,7 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('password')
                     ->label('Contraseña')
                     ->hiddenOn('edit')
+                    ->maxLength(8)
                     ->minLength(8)
                     ->required()
                     ->password(),
